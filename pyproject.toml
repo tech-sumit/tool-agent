@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tool-agent"
+version = "0.1.0"
+description = "FunctionGemma-based integration expert agent exposing A2A, MCP, and WebSocket protocols"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Sumit Agrawal", email = "mr.sumitagrawal.17@gmail.com"},
+]
+keywords = ["function-calling", "tool-use", "gemma", "agent", "n8n", "a2a", "mcp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+    "websockets>=14.0",
+    "a2a-sdk[http-server]>=0.3",
+    "mcp[cli]>=1.26",
+    "transformers>=4.48",
+    "torch>=2.5",
+    "pydantic>=2.10",
+    "pyyaml>=6.0",
+    "httpx>=0.28",
+]
+
+[project.urls]
+Homepage = "https://github.com/sumitagrawal/tool-agent"
+Repository = "https://github.com/sumitagrawal/tool-agent"
+
+[project.optional-dependencies]
+training = [
+    "peft>=0.14",
+    "trl>=0.14",
+    "datasets>=3.2",
+    "accelerate>=1.3",
+    "sentencepiece>=0.2",
+    "protobuf>=5.0",
+    "huggingface_hub>=0.25",
+]
+
+[project.scripts]
+tool-agent = "agent.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agent"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

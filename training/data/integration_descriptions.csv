@@ -1,0 +1,61 @@
+node_name,description
+httpRequest,Make HTTP requests to any URL or API endpoint
+code,Run custom JavaScript or Python code
+set,Set or transform data fields
+if,Conditional branching based on data values
+googleSheets,"Read, write, and update Google Sheets spreadsheets"
+agent,AI agent that uses tools and LLMs to complete tasks
+lmChatOpenAi,"Chat with OpenAI language models (GPT-4, etc.)"
+telegram,"Send messages, photos, and files via Telegram"
+gmail,"Send, read, and manage Gmail emails"
+merge,Merge data from multiple branches
+scheduleTrigger,Trigger workflows on a schedule (cron)
+wait,Pause workflow execution for a duration
+manualTrigger,Manually trigger a workflow
+splitInBatches,Process items in configurable batch sizes
+googleDrive,"Upload, download, and manage Google Drive files"
+webhook,Receive incoming HTTP requests as workflow triggers
+splitOut,Split array fields into separate items
+slack,Send messages and interact with Slack channels
+switch,Route data to different branches based on conditions
+noOp,No operation — pass data through unchanged
+aggregate,Aggregate multiple items into a single item
+respondToWebhook,Send HTTP response back to webhook caller
+filter,Filter items based on conditions
+airtable,"Read, create, update records in Airtable bases"
+postgres,Query and manipulate PostgreSQL databases
+emailSend,Send emails via SMTP
+notion,"Create, read, update Notion pages and databases"
+discord,Send messages and interact with Discord servers
+github,"Interact with GitHub repos, issues, and PRs"
+twitter,Post tweets and interact with Twitter/X API
+redis,Read and write data to Redis
+jira,Create and manage Jira issues and projects
+hubspot,"Manage HubSpot CRM contacts, deals, and companies"
+openAi,"Call OpenAI APIs for chat, images, audio, embeddings"
+supabase,Query and manage Supabase databases
+rssFeedRead,Read and parse RSS/Atom feeds
+whatsApp,Send messages via WhatsApp Business API
+googleCalendar,Create and manage Google Calendar events
+googleDocs,Create and edit Google Docs documents
+linkedIn,Post updates and manage LinkedIn content
+wordpress,Create and manage WordPress posts and pages
+mongodb,Query and manage MongoDB collections
+lmChatGoogleGemini,Chat with Google Gemini language models
+lmChatAnthropic,Chat with Anthropic Claude language models
+chainLlm,Chain LLM calls with custom prompts
+outputParserStructured,Parse LLM output into structured JSON
+memoryBufferWindow,Maintain conversation memory with sliding window
+mcpTrigger,Expose workflow as an MCP tool server
+chatTrigger,Trigger workflows from n8n chat interface
+toolWorkflow,Use another workflow as a tool for AI agents
+vectorStorePinecone,Store and retrieve vectors in Pinecone
+vectorStoreSupabase,Store and retrieve vectors in Supabase
+vectorStoreQdrant,Store and retrieve vectors in Qdrant
+informationExtractor,Extract structured data from text using LLM
+textClassifier,Classify text into categories using LLM
+mcpClientTool,Connect to external MCP servers as tool sources
+executeWorkflow,Execute another workflow as a sub-workflow
+formTrigger,Trigger workflows from form submissions
+extractFromFile,"Extract text content from PDF, CSV, and other files"
+convertToFile,"Convert data to PDF, CSV, spreadsheet, or other file formats"

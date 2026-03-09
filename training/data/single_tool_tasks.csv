@@ -1,0 +1,172 @@
+node_type,task
+httpRequest,make an API call to a URL
+httpRequest,fetch data from a REST API
+httpRequest,send a POST request with JSON body
+httpRequest,download a file from a URL
+httpRequest,call an external webhook
+httpRequest,make a GET request to an endpoint
+httpRequest,send a PUT request to update a resource
+httpRequest,hit an API endpoint with custom headers
+httpRequest,call a third-party API
+httpRequest,make an authenticated API request
+googleSheets,read data from a Google Sheet
+googleSheets,write rows to a spreadsheet
+googleSheets,update a Google Sheets document
+googleSheets,append data to my Google Sheet
+googleSheets,look up a value in my spreadsheet
+googleSheets,delete rows from a Google Sheet
+googleSheets,create a new sheet tab
+googleSheets,get all rows from a spreadsheet
+slack,send a message to a Slack channel
+slack,post a notification in Slack
+slack,send a Slack DM to a user
+slack,update a Slack message
+slack,post to #general in Slack
+slack,send a formatted message with blocks to Slack
+slack,notify the team on Slack
+slack,send an alert to a Slack channel
+gmail,send an email via Gmail
+gmail,read my recent Gmail emails
+gmail,reply to a Gmail message
+gmail,send an email with an attachment
+gmail,forward a Gmail message
+gmail,search my Gmail inbox
+gmail,draft an email in Gmail
+gmail,send a bulk email via Gmail
+telegram,send a Telegram message
+telegram,send a photo via Telegram
+telegram,reply to a Telegram message
+telegram,send a file through Telegram bot
+telegram,send a notification via Telegram
+telegram,broadcast a message to Telegram subscribers
+postgres,query a PostgreSQL database
+postgres,insert rows into a Postgres table
+postgres,run a SQL query on my database
+postgres,update records in PostgreSQL
+postgres,delete rows from a Postgres table
+postgres,execute a stored procedure in PostgreSQL
+postgres,count rows in a Postgres table
+notion,create a new Notion page
+notion,read from a Notion database
+notion,update a Notion page property
+notion,add an item to my Notion database
+notion,search for pages in Notion
+notion,archive a Notion page
+notion,add a comment to a Notion page
+github,create a GitHub issue
+github,list pull requests on a repository
+github,get file contents from a GitHub repo
+github,create a GitHub release
+github,close a GitHub issue
+github,add a label to a GitHub issue
+github,create a branch on GitHub
+github,merge a pull request
+openAi,generate text with OpenAI
+openAi,create an image with DALL-E
+openAi,transcribe audio with Whisper
+openAi,get embeddings for a text
+openAi,summarize text using GPT
+openAi,translate text with OpenAI
+openAi,analyze sentiment of text using GPT
+airtable,read records from an Airtable base
+airtable,create a new Airtable record
+airtable,update an Airtable record
+airtable,search for records in Airtable
+airtable,delete an Airtable record
+airtable,list all records in an Airtable view
+supabase,query my Supabase database
+supabase,insert data into Supabase
+supabase,update a row in Supabase
+supabase,delete records from Supabase
+discord,send a Discord message
+discord,post an embed in Discord
+discord,send a notification to a Discord channel
+discord,send a DM via Discord bot
+googleDrive,upload a file to Google Drive
+googleDrive,download a file from Google Drive
+googleDrive,list files in a Google Drive folder
+googleDrive,share a Google Drive file
+googleDrive,move a file in Google Drive
+googleDrive,create a folder in Google Drive
+googleCalendar,create a Google Calendar event
+googleCalendar,list upcoming calendar events
+googleCalendar,update a calendar event
+googleCalendar,delete a calendar event
+code,run custom JavaScript code to transform data
+code,execute a Python script on the data
+code,write code to parse and restructure the JSON
+code,transform data using custom code
+code,calculate values with JavaScript
+webhook,set up a webhook endpoint to receive data
+webhook,create an incoming webhook listener
+webhook,expose an HTTP endpoint for external services
+scheduleTrigger,run a workflow every hour
+scheduleTrigger,schedule a daily task at 9 AM
+scheduleTrigger,trigger a workflow every Monday
+scheduleTrigger,run something every 5 minutes
+scheduleTrigger,set up a cron job to run weekly
+jira,create a Jira ticket
+jira,update a Jira issue status
+jira,list open Jira issues
+jira,add a comment to a Jira ticket
+jira,assign a Jira issue to someone
+hubspot,create a HubSpot contact
+hubspot,update a HubSpot deal
+hubspot,list HubSpot contacts
+hubspot,search for a company in HubSpot
+mongodb,query a MongoDB collection
+mongodb,insert a document into MongoDB
+mongodb,update documents in MongoDB
+mongodb,find records in MongoDB
+redis,set a value in Redis
+redis,get a cached value from Redis
+redis,delete a Redis key
+twitter,post a tweet
+twitter,search for tweets
+twitter,like a tweet
+wordpress,create a WordPress post
+wordpress,update a WordPress page
+wordpress,list WordPress posts
+whatsApp,send a WhatsApp message
+whatsApp,send a WhatsApp template message
+linkedIn,post an update on LinkedIn
+linkedIn,share content on LinkedIn
+googleDocs,create a Google Doc
+googleDocs,edit a Google Docs document
+emailSend,send an email via SMTP
+emailSend,send a transactional email
+rssFeedRead,read an RSS feed
+rssFeedRead,parse RSS feed articles
+set,set a field value on the data
+set,rename data fields
+set,add a new field to the items
+filter,filter items by a condition
+filter,remove items that don't match criteria
+if,check a condition and branch the workflow
+if,add conditional logic to my workflow
+switch,route data based on field values
+merge,combine data from two sources
+merge,join data from parallel branches
+aggregate,group items together
+aggregate,combine multiple items into one
+splitInBatches,process items in batches of 10
+splitInBatches,batch process a large dataset
+executeWorkflow,call another workflow as a sub-workflow
+executeWorkflow,run a child workflow
+respondToWebhook,send a response back to the webhook caller
+respondToWebhook,return data to the HTTP request
+agent,use an AI agent to complete a task
+agent,have AI research a topic and respond
+lmChatOpenAi,chat with GPT-4
+lmChatOpenAi,have a conversation with OpenAI
+lmChatAnthropic,chat with Claude
+lmChatAnthropic,ask Claude a question
+lmChatGoogleGemini,use Gemini to generate a response
+informationExtractor,extract structured data from unstructured text
+informationExtractor,pull out names and dates from a document
+textClassifier,classify text into categories
+textClassifier,categorize customer feedback
+convertToFile,convert data to a CSV file
+convertToFile,generate a PDF from data
+extractFromFile,extract text from a PDF
+extractFromFile,parse a CSV file

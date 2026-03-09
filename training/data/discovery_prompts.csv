@@ -1,0 +1,49 @@
+category,prompt
+email,What tools do you have for sending emails?
+email,Which integrations can handle email?
+email,List all email-related tools
+email,Show me email tools available
+email,What can I use to send and read emails?
+spreadsheet,What spreadsheet integrations are available?
+spreadsheet,Which tools work with spreadsheets?
+spreadsheet,Can you list Google Sheets tools?
+spreadsheet,What do you have for working with spreadsheets?
+database,What database tools do you have?
+database,List available database integrations
+database,Which databases can you connect to?
+database,Show me all database tools
+database,What SQL tools are available?
+message,What messaging tools are available?
+message,Which integrations can send messages?
+message,List all chat and messaging tools
+message,What tools work with Slack and Telegram?
+message,Show me notification tools
+ai,What AI and LLM tools are available?
+ai,List all AI-related integrations
+ai,What machine learning tools do you have?
+ai,Which tools use GPT or language models?
+ai,Show me tools for text generation and analysis
+file,What file handling tools exist?
+file,Which tools can process files?
+file,List file upload and download tools
+file,What do you have for PDF and CSV processing?
+api,What API integration tools are available?
+api,Show me HTTP and REST tools
+api,Which tools let me call external APIs?
+schedule,What scheduling tools do you have?
+schedule,How can I trigger workflows on a timer?
+schedule,Show me cron and time-based triggers
+schedule,What triggers run on a schedule?
+crm,What CRM integrations are available?
+crm,Which tools work with HubSpot or Salesforce?
+crm,List customer relationship management tools
+code,What tools let me run custom code?
+code,Can I execute JavaScript or Python?
+code,Show me code execution tools
+storage,What cloud storage integrations exist?
+storage,Which tools work with Google Drive or S3?
+project,What project management tools are available?
+project,Which tools work with Jira or Trello?
+project,List project tracking integrations
+vector,What vector database tools are available?
+vector,Which tools support embeddings and vector search?

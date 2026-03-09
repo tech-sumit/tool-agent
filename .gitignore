@@ -1,0 +1,41 @@
+# Models & checkpoints
+models/
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Training artifacts
+training/data/*.jsonl
+training/reports/
+wandb/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,25 @@
+services:
+  tool-agent:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: tool-agent
+    ports:
+      - "${TOOL_AGENT_PORT:-8888}:8888"
+    environment:
+      - TOOL_AGENT_HOST=0.0.0.0
+      - TOOL_AGENT_PORT=8888
+      - TOOL_AGENT_MODEL=${TOOL_AGENT_MODEL:-functiongemma}
+      - TOOL_AGENT_BACKEND=${TOOL_AGENT_BACKEND:-ollama}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - N8N_API_URL=${N8N_API_URL:-http://host.docker.internal:5678}
+      - N8N_API_KEY=${N8N_API_KEY:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8888/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

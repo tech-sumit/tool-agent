@@ -1,0 +1,33 @@
+task: functiongemma_general
+dataset_path: json
+dataset_kwargs:
+  data_files:
+    test: training/data/general_test.jsonl
+test_split: test
+output_type: generate_until
+generation_kwargs:
+  until:
+    - "<end_of_turn>"
+    - "<eos>"
+  max_gen_toks: 256
+  temperature: 0.0
+  do_sample: false
+num_fewshot: 0
+doc_to_text: !function utils.doc_to_text
+doc_to_target: !function utils.doc_to_target
+process_results: !function utils.process_results
+metric_list:
+  - metric: tool_selection_acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: first_tool_acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: negative_rejection
+    aggregation: mean
+    higher_is_better: true
+  - metric: param_accuracy
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
