@@ -53,7 +53,7 @@ class ToolAgentExecutor(AgentExecutor):
                 user_text = part.text
 
         if not user_text:
-            await event_queue.put(
+            await event_queue.enqueue_event(
                 Task(
                     id=context.task_id,
                     context_id=context.context_id,
@@ -69,7 +69,7 @@ class ToolAgentExecutor(AgentExecutor):
             )
             return
 
-        await event_queue.put(
+        await event_queue.enqueue_event(
             TaskStatusUpdateEvent(
                 task_id=context.task_id,
                 context_id=context.context_id,
@@ -87,7 +87,7 @@ class ToolAgentExecutor(AgentExecutor):
                 response_data = result.to_dict()
                 response_text = json.dumps(response_data, indent=2, default=str)
 
-                await event_queue.put(
+                await event_queue.enqueue_event(
                     Task(
                         id=context.task_id,
                         context_id=context.context_id,
@@ -102,7 +102,7 @@ class ToolAgentExecutor(AgentExecutor):
                     )
                 )
             else:
-                await event_queue.put(
+                await event_queue.enqueue_event(
                     Task(
                         id=context.task_id,
                         context_id=context.context_id,
@@ -119,7 +119,7 @@ class ToolAgentExecutor(AgentExecutor):
 
         except Exception as exc:
             logger.exception("A2A execution failed")
-            await event_queue.put(
+            await event_queue.enqueue_event(
                 Task(
                     id=context.task_id,
                     context_id=context.context_id,
@@ -135,7 +135,7 @@ class ToolAgentExecutor(AgentExecutor):
             )
 
     async def cancel(self, context: RequestContext, event_queue: EventQueue):
-        await event_queue.put(
+        await event_queue.enqueue_event(
             Task(
                 id=context.task_id,
                 context_id=context.context_id,

@@ -46,8 +46,12 @@ async def lifespan(app: FastAPI):
 
     logger.info("Starting Tool Agent v%s", config.agent_version)
 
-    register_n8n_tools(registry)
     register_http_tools(registry)
+    if config.n8n_api_key:
+        register_n8n_tools(registry)
+        logger.info("n8n tools registered (API key configured)")
+    else:
+        logger.info("n8n tools skipped (N8N_API_KEY not set)")
     logger.info("Registered %d tools", registry.tool_count)
 
     backend = create_backend()
