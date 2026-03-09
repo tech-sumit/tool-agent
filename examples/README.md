@@ -36,12 +36,14 @@ as the web scraping backend.
 
 ### Architecture
 
-```
-User query
-  → Gemini 2.5 Flash Lite    (lightweight model, native function calling)
-    → Tool Agent               (routes to best tool from 12+ Firecrawl tools)
-      → Firecrawl MCP Server   (scrapes / crawls / searches the web)
-  → Gemini summarizes results
+```mermaid
+graph LR
+    User["User Query"] --> Gemini["Gemini 2.5 Flash Lite\nnative function calling"]
+    Gemini --> Agent["Tool Agent\nroutes to best tool"]
+    Agent --> Firecrawl["Firecrawl MCP Server\n12 web scraping tools"]
+    Firecrawl --> Agent
+    Agent --> Gemini
+    Gemini --> Summary["Gemini summarizes\nresults"]
 ```
 
 ### Prerequisites
@@ -189,6 +191,22 @@ All protocols (REST, WebSocket, A2A, MCP) will use Gemini for tool selection.
 `finetuned_firecrawl.py` and `finetuned_simple_test.py` test the fine-tuned
 FunctionGemma 270M model (LoRA adapter merged at runtime) through the full
 tool_agent pipeline. `base_vs_finetuned_test.py` runs both models side-by-side.
+
+### LoRA Loading Flow
+
+```mermaid
+graph LR
+    Path["Model Path\nmodels/finetuned/"] --> Detect{"adapter_config.json\nexists?"}
+    Detect -->|Yes| ReadCfg["Read base_model\nfrom config"]
+    Detect -->|No| PlainLoad["Load model\ndirectly"]
+    ReadCfg --> LoadBase["Download & load\nbase model"]
+    LoadBase --> MergeLoRA["PeftModel.from_pretrained\n+ merge_and_unload"]
+    MergeLoRA --> DetectFG{"FunctionGemma\ndetected?"}
+    DetectFG -->|Yes| LegacyPrompt["Use Gemma 3\nturn markers"]
+    DetectFG -->|No| ChatML["Use ChatML\ntemplate"]
+    LegacyPrompt --> Ready["Model ready\nfor inference"]
+    ChatML --> Ready
+```
 
 ### What Changed to Make It Work
 

@@ -95,21 +95,73 @@ curl -X POST http://localhost:8888/route \
 
 ## Architecture
 
+```mermaid
+graph TB
+    subgraph protocols [Protocol Layer]
+        A2A["A2A\n/.well-known/agent-card.json\n/a2a"]
+        MCP["MCP\n/mcp"]
+        WS["WebSocket\n/ws JSON-RPC 2.0"]
+        REST["REST API\n/tools /route /execute"]
+    end
+
+    subgraph core [Core Engine]
+        Router["ToolRouter / Composer\nFunctionGemma selects tools\nand composes chains"]
+        Parser["FunctionCall Parser\nJSON + legacy format"]
+    end
+
+    subgraph backends [Inference Backends]
+        Transformers["Transformers\nLoRA auto-detect + merge"]
+        Ollama["Ollama\nGGUF models"]
+        Gemini["Gemini API\nnative function calling"]
+        Mock["Mock\nkeyword matching"]
+    end
+
+    subgraph tools [Tool Registry]
+        HTTP["HTTP Tools"]
+        N8N["n8n Workflows"]
+        MCPBridge["MCP Bridge\nFirecrawl, etc."]
+        Custom["Custom Tools"]
+    end
+
+    A2A --> Router
+    MCP --> Router
+    WS --> Router
+    REST --> Router
+    Router --> Parser
+    Parser --> Transformers
+    Parser --> Ollama
+    Parser --> Gemini
+    Parser --> Mock
+    Router --> HTTP
+    Router --> N8N
+    Router --> MCPBridge
+    Router --> Custom
 ```
-┌─────────────────────────────────────────────────┐
-│                  Protocol Layer                  │
-│         A2A  ·  MCP  ·  WebSocket  ·  REST      │
-├─────────────────────────────────────────────────┤
-│               Router / Composer                  │
-│   FunctionGemma selects tools, composes chains   │
-├─────────────────────────────────────────────────┤
-│              Inference Backends                  │
-│  Transformers (LoRA) · Ollama · Gemini · Mock    │
-├─────────────────────────────────────────────────┤
-│                 Tool Registry                    │
-│    Dynamic registry with JSON Schema defs        │
-│    HTTP · n8n · MCP Bridge (Firecrawl, etc.)     │
-└─────────────────────────────────────────────────┘
+
+### Request Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Protocol as Protocol Layer
+    participant Router as ToolRouter
+    participant Backend as InferenceBackend
+    participant Registry as ToolRegistry
+    participant Tool as External Tool
+
+    Client->>Protocol: "What's the weather in Tokyo?"
+    Protocol->>Router: route(message)
+    Router->>Registry: get_function_schemas()
+    Registry-->>Router: tool schemas (JSON)
+    Router->>Backend: generate(message, tools)
+    Backend-->>Router: "<start_function_call>call:get_weather{city:Tokyo}"
+    Router->>Router: FunctionCall.parse()
+    Router->>Registry: execute("get_weather", city="Tokyo")
+    Registry->>Tool: run tool
+    Tool-->>Registry: result
+    Registry-->>Router: ToolResult
+    Router-->>Protocol: RoutingResult
+    Protocol-->>Client: response
 ```
 
 ## Examples
@@ -127,6 +179,16 @@ See [`examples/`](examples/) for client scripts and integration demos:
 | [`finetuned_simple_test.py`](examples/finetuned_simple_test.py) | Fine-tuned model evaluation (7 queries) |
 
 ## Training Pipeline
+
+```mermaid
+graph LR
+    Download["Download\nxlam-60k\nirrelevance-7.5k"] --> Convert["Convert\nxLAM JSON →\nFunctionGemma"]
+    Convert --> Train["LoRA Fine-Tune\nH100 GPU\n25 min · 3 epochs"]
+    Train --> Benchmark["Benchmark\nlm-evaluation-harness"]
+    Train --> Export["Export\nGGUF for Ollama"]
+    Benchmark --> Publish["Publish\nHuggingFace Hub"]
+    Export --> Publish
+```
 
 ```bash
 make download    # Download xlam-60k + irrelevance-7.5k from HuggingFace
