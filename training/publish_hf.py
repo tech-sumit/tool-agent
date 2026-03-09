@@ -40,7 +40,15 @@ pipeline_tag: text-generation
 Fine-tuned [FunctionGemma 270M](https://huggingface.co/{base_model}) LoRA adapter
 specialized for **general tool/function calling**.
 
+| | Link |
+|---|---|
+| **Source code** | [tech-sumit/tool-agent](https://github.com/tech-sumit/tool-agent) |
+| **Blog post** | [sumitagrawal.dev/blog/finetuning-functiongemma-270m-tool-calling](https://sumitagrawal.dev/blog/finetuning-functiongemma-270m-tool-calling/) |
+| **Base model** | [{base_model}](https://huggingface.co/{base_model}) |
+
 ## Benchmark Results
+
+![Benchmark Results](benchmark-results.png)
 
 Evaluated using [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) on 100 held-out general function-calling examples:
 
@@ -51,20 +59,23 @@ Evaluated using [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluat
 | Negative Rejection | 100.0% | 100.0% | +0.0% |
 | Param Accuracy | 49.0% | 68.9% | **+19.9%** |
 
+End-to-end through the [tool agent](https://github.com/tech-sumit/tool-agent) pipeline: **14% → 57%** tool selection accuracy.
+
 ## Training
 
-- **Base model**: `{base_model}`
-- **Method**: LoRA (r={lora_r}, alpha={lora_alpha}) via PEFT + TRL SFTTrainer
+- **Base model**: [`{base_model}`](https://huggingface.co/{base_model}) (Gemma 3 270M)
+- **Method**: [LoRA](https://arxiv.org/abs/2106.09685) (r={lora_r}, alpha={lora_alpha}) via [PEFT](https://huggingface.co/docs/peft) + [TRL](https://huggingface.co/docs/trl) SFTTrainer
 - **Dataset**: {num_examples:,} general function-calling examples
 - **Epochs**: {num_epochs}
-- **Hardware**: NVIDIA H100 SXM 80GB
+- **Training time**: 25 minutes
+- **Hardware**: NVIDIA H100 SXM 80GB via [vast.ai](https://vast.ai)
 
 ### Data composition
 
 | Source | Examples | Purpose |
 |--------|----------|---------|
-| xlam-function-calling-60k | ~10,000 | General function calling |
-| xlam-irrelevance-7.5k | ~3,000 | Negative examples / refusal |
+| [Salesforce/xlam-function-calling-60k](https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k) | ~10,000 | General function calling |
+| [MadeAgents/xlam-irrelevance-7.5k](https://huggingface.co/datasets/MadeAgents/xlam-irrelevance-7.5k) | ~3,000 | Negative examples / refusal |
 | **Total** | **~13,000** | |
 
 ## Usage
